@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to socket!</h1>
+    <input type="name" id="name" placeholder="write your name here"/>
+    <button onclick="hello()">envoyer</button>
+    <p id="content">
+
+    </p>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>    </script>
+    <script>
+        function hello(){ // ki bech tenzel al button bch yemchy ykhadem socket.on (yhel haja taamel ecout al socket mteei), ki naabeth action fil partie back bch yemchy yaamel listner w yrajaa haja
+        var socket = io('http://localhost:5000'); // je crée une relation entre le client et le serveur 
+        var name = document.getElementById("name").value;
+        socket.on('greeting',(message)=>{ // on heya partie listen, ta3tini resultat wa9t tsir l'action client.emit w taatini emit // fil fonction callback message bch ykon andi access al message eli jeyini m serveur
+            console.log("listening on socket");
+            document.getElementById("content").innerHTML += message +"<br>";
+        });
+        socket.emit('greeting',name);   
+        } 
+    </script>
+</body>
+</html>
